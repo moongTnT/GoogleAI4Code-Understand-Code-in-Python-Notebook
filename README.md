@@ -1,4 +1,4 @@
-# [프로젝트][22.03]Google AI4Code-Understand Code in Python Notebook
+# Google AI4Code-Understand Code in Python Notebook
 
 *프로젝트 수행 이력: 2022.03.01 ~ 2022.06.31*
 
