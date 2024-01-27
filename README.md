@@ -40,13 +40,13 @@ $$
 
 허깅페이스의 distillBERT-small 모델을 외부에서 마련한 프로그래밍언어 데이터셋에 대해 사전학습을 한 후, 주어진 훈련 데이터셋에 대해 NSP 방법론으로 파인튜닝하였음. 가용 인프라를 고려하여 large, base 모델보단 small 모델을 선택하였음. 모델의 성능은 0.82로 베이스라인에 비해 큰 성능향상을 확인하였음.
 
-**Adaptive Pretraining: MLM -** distill_BERT_small/Pretrainer.py
+▶ **Adaptive Pretraining: MLM -** distill_BERT_small/Pretrainer.py
 
 주어진 데이터셋은 파이썬과 자연어로 이루어진 언어 조각들임. 즉 Huggingface 등 외부에서 유사한 데이터를 구하기가 쉬움. 해당 외부데이터는 주최측이 보유하고 있는 데이터의 특징과 완전히 같지는 않지만, 파이썬 코드라는 점에서 어느정도 모델 성능 향상에 기여할 여지가 있음. 이에 따라 해당 외부 데이터들을 파인 튜닝 목적으로 사용하기 보다는, 사전학습을 통해 내재된 코드에 대한 지식을 모델에 전수하는 것이 적절하다고 판단하였음. 
 
 외부데이터는 사전학습용으로 이미 전처리가 되어 있는 데이터라, Python 코드만 선별한 후 문장 별로 구분한 후 하나의 텍스트 파일에 저장하여 사용하였음. 사전학습의 방법론은 NSP, MLM 중 효용성이 불확실한 NSP를 제외한 MLM만 수행하였음. 마스킹 비율은 기존 BERT의 사전학습과 동일하게 0.15임. 토크나이저는 distillBERT의 사전학습용 토크나이저를 그대로 사용함. 
 
-**Pairwise finetuning: NSP -** distill_BERT_small/FineTuner.py
+▶ **Pairwise finetuning: NSP -** distill_BERT_small/FineTuner.py
 
 코드의 순서를 예측하는 작업이라는 측면에서 NSP를 응용한 Pairwise 방법론을 사용하였음. 임의의 마크다운 셀과의 유사도를 구하는 문제임. 훈련 데이터셋은 마크다운 셀 바로 뒤에나오는 코드셀의 레이블은 1, 아니면 0임. 유사도를 측정하므로 회귀 모델임. 출력 노드에 sigmoid를 사용, 또한 오차에 대한 선형적인 손실을 부여하는 L1Loss를 사용하였음. 
 
@@ -54,11 +54,11 @@ $$
 
 베이스라인의 기타 추가 feature를 추가하고, 모델을 매우 큰 크기의 다양한 프로그래밍 언어에서 사전학습된 GraphCodeBERT-base로 변경한 후 fine tuning을 진행하였음. 결과는 약 0.84로, 위 모델에 비해 약간의 성능향상을 확인하였음. 
 
-**Rank regression finetuning** - graphcode_BERT_base/Model.py
+▶ **Rank regression finetuning** - graphcode_BERT_base/Model.py
 
 주어진 코드셀들과 예측할 마크다운 셀을 입력으로 받고 정규화된 순서를 반환하는 회귀 모델임. 추가적인 feature로 코드셀, 마크다운셀의 각각의 개수를 주었음. 출력 노드에 sigmoid를 사용하였으며 오차에 대한 선형적인 손실을 부여하는 L1Loss를 사용하였음.  
 
-**Mixed Precision Training**- graphcode_BERT_base/FineTuner.py
+▶ **Mixed Precision Training**- graphcode_BERT_base/FineTuner.py
 
 모델의 크기가 거대해 학습 시간이 이틀 이상으로 매우 오래 걸리는 이슈가 발생하였음. 이에 따라 1) 가장 사용에 용이하다는 것 2) 학습 시간 뿐만 아니라 예측 성능 향상도 기대할 수 있다는 점을 고려하여 순전파 및 역전파 등의 가중치 연산은 16FP, 가중치 갱신에는 32FP를 사용하는  혼합 정밀도 연산을 학습에 수행하였음. 총 학습 시간 30시간으로 감소하였음. 
 
