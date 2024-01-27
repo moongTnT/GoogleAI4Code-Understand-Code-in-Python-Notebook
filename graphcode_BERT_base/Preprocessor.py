@@ -116,8 +116,8 @@ class _20CodeCellPreprocessor(Preprocessor):
             while int(np.round(idx) < len(cells)):
                 results.append(cells[int(np.round(idx))])
                 idx += step
-            assert cells[0] in results # 첫번쨰 코드셀은 반드시 들어가야 한다?
-            if cells[-1] not in results: # 말전 코드셀은 반드시 들어가야 한다?
+            assert cells[0] in results # 첫번쨰 코드셀은 반드시 들어가야 한다
+            if cells[-1] not in results: # 말전 코드셀은 반드시 들어가야 한다
                 results[-1] = cells[-1]
             return results
 

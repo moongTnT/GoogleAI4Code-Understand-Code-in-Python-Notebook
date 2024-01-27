@@ -28,7 +28,7 @@ def validate(model, val_loader):
         for idx, data in enumerate(tbar):
             inputs, target = read_data(data)
 
-            with torch.cuda.amp.autocast():
+            with torch.cuda.amp.autocast(): # 혼합 정밀도 연산
                 pred = model(*inputs)
 
             preds.append(pred.detach().cpu().numpy().ravel())
@@ -52,7 +52,7 @@ def train(model, train_loader, val_loader, optimizer, scheduler, scaler, val_df,
         for idx, data in enumerate(tbar):
             inputs, target = read_data(data)
 
-            with torch.cuda.amp.autocast():
+            with torch.cuda.amp.autocast(): # 혼합 정밀도 연산
                 pred = model(*inputs)
                 loss = criterion(pred, target)
             scaler.scale(loss).backward()

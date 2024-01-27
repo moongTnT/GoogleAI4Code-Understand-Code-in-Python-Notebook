@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch
 from transformers import AutoConfig, AutoModel
 
-class _20SampleModel(nn.Module): # 이 새끼 dropout을 안때렸다,,,?
+class _20SampleModel(nn.Module): 
     def __init__(self, model_path):
         super(_20SampleModel, self).__init__()
         

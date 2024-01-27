@@ -14,6 +14,11 @@ class FineTuner():
         self.epochs = epochs
 
     def generate_triplet(self, mode='train'):
+        """
+        학습 혹은 테스트용 데이터 triplet 생성 함수
+        mode: 'train' | 'test'
+        result: triplet = [markdown_id, codecell_id, is_next]의 리스트
+        """
         triplets = []
         ids = self.df.id.unique()
         random_drop = np.random.random(size=10000) > .9
