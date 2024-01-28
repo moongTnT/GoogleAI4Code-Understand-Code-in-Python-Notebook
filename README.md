@@ -4,6 +4,19 @@
 
 *2024.01.28 포트폴리오 목적으로  Readme 작성 후 업로드: 조문근*
 
+- [Google AI4Code-Understand Code in Python Notebook](#google-ai4code-understand-code-in-python-notebook)
+  * [Abstract](#abstract)
+  * [1 개요](#1---)
+    + [1.1 프로젝트의 특징과 기대되는 성과](#11------------------)
+    + [1.2 예상되는 리스크와 대응방안](#12---------------)
+  * [2 문제 정의](#2------)
+    + [2.1 성능의 평가](#21-------)
+  * [2 모델링](#2----)
+    + [2.1 DistillBERT-small](#21-distillbert-small)
+    + [2.1 GraphCodeBERT](#21-graphcodebert)
+  * [3 결과](#3---)
+  * [Reference](#reference)
+
 ## Abstract
 
 본 문서는 본인이 2022년 1학기 건국대학교 SW중심대학 장학활동으로 수행하였던 프로젝트의 요약본임. 이에 따라 결과보단 과정이 우선적으로 작성됨. 
@@ -69,3 +82,17 @@ $$
 ![스샷](leaderboard.png)
 
 Competition에서 대략 상위 10%를 달성 및 단일 Task에 대한 다양한 모델링을 경험하였음. 역량 향상 측면에서는 크게 1) 거대 언어 모델을 목적에 맞게 직접 사전학습 시킬 수 있음 2) 사전학습된 거대 언어 모델을 목적에 맞게 finetuning 할 수 있음 3) 혼합 정밀도 연산을 학습에 적용해 성능, 비용을 개선시킬 수 있는 역량을 얻게 됨.
+
+## Reference
+
+▶ **추가적인 사전학습을 통한 성능 개선**
+
+[1] Suchin Gururangan et al., “Don’t Stop Pretraining: Adapt Language Models to Domains and Tasks”, ACL 2020
+
+▶ **CodeBERT**
+
+[1] Zhangyin Feng et al., “CodeBERT: A Pre-Trained Model for Programming and Natural Languages”, EMNLP 2020
+
+▶ **혼합 정밀도 학습을 통한 성능 개선**
+
+[1] Paulius Micikevicius et al., “Mixed Precision Training”, ICLR 2018
