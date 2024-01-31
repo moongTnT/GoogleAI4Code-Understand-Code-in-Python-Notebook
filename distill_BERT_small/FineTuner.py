@@ -98,7 +98,7 @@ class FineTuner():
         np.random.seed(0)
 
         optimizer = self.get_optimizer(model)
-        criterion = torch.nn.L1Loss()
+        criterion = torch.nn.BCELoss()
         scaler = torch.cuda.amp.GradScaler()
 
         for e in range(self.epochs):
