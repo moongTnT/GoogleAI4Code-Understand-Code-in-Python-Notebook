@@ -27,7 +27,7 @@ $$
 ### 4 모델링
 모델링에 고려할 요소는 가정용 GPU(RTX 3090TI 24GB)에서 실행 가능해야 하기에 1) Capacity 2) 추론 성능임. 베이스라인에서 모델 변경 후 0.75 -> 0.84의 성능 향상, 외부데이터에 대한 사전학습과 다른 방식의 finetuning을 진행했을 때 0.75->0.82의 성능 향상을 확인하였음. 최종 모델은 모델1과 모델2의 3:1 Weighted voting 앙상블로, 0.85의 성능을 확인함.
 
-| #    | 모델명                                  | Score | Finetuning       |
+| #    | 모델명                                  | Score |Finetuning       |
 | --- | ------------------------------------- | ----- | ------------------ |
 | Baseline    | DistillBERT-small                     | 0.75  | Normalized Ranking Regression |
 | Model 01    | CodeBERT-base                         | 0.84  | Normalized Ranking Regression |
